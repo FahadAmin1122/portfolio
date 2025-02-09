@@ -1,10 +1,12 @@
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import gsap from "gsap";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,6 +59,7 @@ export default function Navbar() {
         behavior: "smooth",
       });
     }
+    setIsMenuOpen(false); // Close menu after clicking
   };
 
   return (
@@ -66,14 +69,24 @@ export default function Navbar() {
         ? "bg-gradient-to-r from-[#1a1c2e] to-[#2a2c3e] shadow-lg backdrop-blur-md" 
         : "bg-transparent"
     )}>
-      <div className="container flex h-20 items-center">
+      <div className="container flex h-20 items-center justify-between">
         <button 
           onClick={() => scrollToSection("#home")}
-          className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 hover:opacity-80 transition-opacity"
+          className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 hover:opacity-80 transition-opacity"
         >
           Fahad Amin
         </button>
-        <div className="ml-auto flex gap-8">
+
+        {/* Mobile menu button */}
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="lg:hidden p-2 text-gray-300 hover:text-blue-400 transition-colors"
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Desktop menu */}
+        <div className="hidden lg:flex gap-8">
           {navItems.map(({ href, label }) => (
             <button
               key={href}
@@ -88,6 +101,29 @@ export default function Navbar() {
               {label}
             </button>
           ))}
+        </div>
+
+        {/* Mobile menu dropdown */}
+        <div className={cn(
+          "absolute top-full left-0 w-full bg-gradient-to-r from-[#1a1c2e] to-[#2a2c3e] shadow-lg lg:hidden transition-all duration-300 overflow-hidden",
+          isMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+        )}>
+          <div className="container py-4 flex flex-col gap-4">
+            {navItems.map(({ href, label }) => (
+              <button
+                key={href}
+                onClick={() => scrollToSection(href)}
+                className={cn(
+                  "text-left text-sm font-medium transition-all hover:text-blue-400 py-2",
+                  activeSection === href.slice(1) 
+                    ? "text-blue-400"
+                    : "text-gray-300"
+                )}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </nav>
