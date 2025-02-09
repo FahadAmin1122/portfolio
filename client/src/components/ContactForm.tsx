@@ -27,11 +27,19 @@ export default function ContactForm() {
   });
 
   function onSubmit(data: FormData) {
-    console.log(data);
+    // Create mailto link with form data
+    const subject = `Portfolio Contact from ${data.name}`;
+    const body = `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`;
+    const mailtoLink = `mailto:famin7733@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Open email client
+    window.location.href = mailtoLink;
+
     toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
+      title: "Opening email client",
+      description: "Thank you for your message. Your email client should open shortly.",
     });
+
     form.reset();
   }
 
@@ -77,7 +85,9 @@ export default function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">Send Message</Button>
+        <Button type="submit" className="w-full bg-gradient-to-r from-blue-400 to-purple-600 hover:opacity-90">
+          Send Message
+        </Button>
       </form>
     </Form>
   );

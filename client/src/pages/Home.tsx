@@ -42,6 +42,7 @@ export default function Home() {
   const projectsRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
+  const projectCardsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const sections = [projectsRef, aboutRef, contactRef];
@@ -80,23 +81,43 @@ export default function Home() {
       }
     });
 
+    // Special animation for project cards
+    if (projectCardsRef.current) {
+      const cards = projectCardsRef.current.children;
+      Array.from(cards).forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+          },
+          y: 100,
+          opacity: 0,
+          duration: 1,
+          delay: index * 0.2,
+          ease: "power3.out",
+        });
+      });
+    }
+
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
   return (
-    <div className="pt-20"> {/* Add top padding to prevent content from hiding under navbar */}
+    <div className="pt-20">
       <section id="home" className="min-h-[calc(100vh-5rem)]">
         <Hero />
       </section>
 
-      <section id="projects" ref={projectsRef} className="py-32 bg-muted/50">
+      <section id="projects" ref={projectsRef} className="py-32 bg-gradient-to-b from-[#1a1c2e] to-[#2a2c3e]">
         <div className="container">
-          <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-[#61DAFB]">
+          <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
             Featured Projects
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div ref={projectCardsRef} className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
             {featuredProjects.map((project) => (
               <ProjectCard key={project.title} {...project} />
             ))}
@@ -106,23 +127,33 @@ export default function Home() {
 
       <section id="about" ref={aboutRef} className="py-32">
         <div className="container">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-[#61DAFB]">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
               About Me
             </h2>
-            <div className="prose prose-lg">
-              <p>
-                I'm Fahad Amin, a passionate MERN stack developer with a focus on building
-                scalable web applications. With expertise in modern web technologies,
-                I create efficient and user-friendly solutions for complex problems.
-              </p>
-              <p>
-                My journey in web development started with a deep curiosity for creating
-                interactive user experiences. Over the years, I've honed my skills in
-                the MERN stack (MongoDB, Express.js, React, and Node.js) and various
-                modern development tools and practices.
-              </p>
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+              <div className="relative aspect-square rounded-xl overflow-hidden shadow-xl">
+                <img
+                  src="https://images.unsplash.com/photo-1614023342667-6f060e9d1e04" 
+                  alt="Fahad Amin"
+                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+              <div className="prose prose-lg">
+                <p>
+                  I'm Fahad Amin, a passionate MERN stack developer with a focus on building
+                  scalable web applications. With expertise in modern web technologies,
+                  I create efficient and user-friendly solutions for complex problems.
+                </p>
+                <p>
+                  My journey in web development started with a deep curiosity for creating
+                  interactive user experiences. Over the years, I've honed my skills in
+                  the MERN stack (MongoDB, Express.js, React, and Node.js) and various
+                  modern development tools and practices.
+                </p>
+              </div>
             </div>
+
             <div className="mt-20">
               <h3 className="text-2xl font-bold mb-12 text-center">Skills & Technologies</h3>
               <SkillsGrid />
@@ -131,34 +162,34 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" ref={contactRef} className="py-32 bg-muted/50">
+      <section id="contact" ref={contactRef} className="py-32 bg-gradient-to-b from-[#1a1c2e] to-[#2a2c3e]">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-[#61DAFB]">
+            <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
               Get in Touch
             </h2>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <Card className="p-6 hover:border-primary transition-colors">
+              <Card className="p-6 hover:border-blue-400 transition-colors">
                 <div className="flex items-center gap-4 mb-4">
-                  <Mail className="w-6 h-6 text-primary" />
+                  <Mail className="w-6 h-6 text-blue-400" />
                   <h3 className="font-semibold">Email</h3>
                 </div>
-                <a href="mailto:fahad.amin@example.com" className="text-muted-foreground hover:text-primary">
-                  fahad.amin@example.com
+                <a href="mailto:famin7733@gmail.com" className="text-muted-foreground hover:text-blue-400">
+                  famin7733@gmail.com
                 </a>
               </Card>
 
-              <Card className="p-6 hover:border-primary transition-colors">
+              <Card className="p-6 hover:border-blue-400 transition-colors">
                 <div className="flex items-center gap-4 mb-4">
-                  <Linkedin className="w-6 h-6 text-primary" />
+                  <Linkedin className="w-6 h-6 text-blue-400" />
                   <h3 className="font-semibold">LinkedIn</h3>
                 </div>
                 <a
                   href="https://linkedin.com/in/fahadamin"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary"
+                  className="text-muted-foreground hover:text-blue-400"
                 >
                   linkedin.com/in/fahadamin
                 </a>
