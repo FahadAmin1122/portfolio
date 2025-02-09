@@ -69,7 +69,7 @@ export default function Navbar() {
         ? "bg-gradient-to-r from-[#1a1c2e] to-[#2a2c3e] shadow-lg backdrop-blur-md" 
         : "bg-transparent"
     )}>
-      <div className="container flex h-20 items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] flex h-20 items-center justify-between">
         <button 
           onClick={() => scrollToSection("#home")}
           className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 hover:opacity-80 transition-opacity"
@@ -108,7 +108,7 @@ export default function Navbar() {
           "absolute top-full left-0 w-full bg-gradient-to-r from-[#1a1c2e] to-[#2a2c3e] shadow-lg lg:hidden transition-all duration-300 overflow-hidden",
           isMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
         )}>
-          <div className="container py-4 flex flex-col gap-4">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] py-4 flex flex-col gap-4">
             {navItems.map(({ href, label }) => (
               <button
                 key={href}
