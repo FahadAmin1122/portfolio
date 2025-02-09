@@ -2,16 +2,16 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
-import { useLocation } from "wouter";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
-  const [, setLocation] = useLocation();
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!containerRef.current || !textRef.current) return;
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
@@ -21,9 +21,19 @@ export default function Hero() {
       },
     });
 
-    tl.from(textRef.current, {
+    // Initial animation
+    gsap.from(textRef.current.children, {
       y: 100,
       opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power3.out",
+    });
+
+    // Scroll animation
+    tl.to(textRef.current, {
+      y: -50,
+      opacity: 0.8,
       duration: 1,
     });
 
@@ -31,6 +41,30 @@ export default function Hero() {
       tl.kill();
     };
   }, []);
+
+  const scrollToProjects = () => {
+    const projectsSection = document.querySelector("#projects");
+    if (projectsSection) {
+      const navHeight = 64; // Height of the navbar
+      const elementPosition = projectsSection.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - navHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollToContact = () => {
+    const contactSection = document.querySelector("#contact");
+    if (contactSection) {
+      const navHeight = 64; // Height of the navbar
+      const elementPosition = contactSection.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - navHeight,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <div ref={containerRef} className="min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-muted">
@@ -42,10 +76,10 @@ export default function Hero() {
           Building modern web applications with passion and precision
         </p>
         <div className="flex gap-4 justify-center">
-          <Button size="lg" onClick={() => setLocation("/projects")}>
+          <Button size="lg" onClick={scrollToProjects}>
             View Projects
           </Button>
-          <Button size="lg" variant="outline" onClick={() => setLocation("/contact")}>
+          <Button size="lg" variant="outline" onClick={scrollToContact}>
             Get in Touch
           </Button>
         </div>
