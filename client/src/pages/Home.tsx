@@ -112,12 +112,12 @@ export default function Home() {
         <Hero />
       </section>
 
-      <section id="projects" ref={projectsRef} className="py-20 sm:py-32 bg-gradient-to-b from-[#1a1c2e] to-[#2a2c3e]">
-        <div className="container px-4">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+      <section id="projects" ref={projectsRef} className="py-32 bg-gradient-to-b from-[#1a1c2e] to-[#2a2c3e]">
+        <div className="container">
+          <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
             Featured Projects
           </h2>
-          <div ref={projectCardsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div ref={projectCardsRef} className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
             {featuredProjects.map((project) => (
               <ProjectCard key={project.title} {...project} />
             ))}
@@ -125,14 +125,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" ref={aboutRef} className="py-20 sm:py-32">
-        <div className="container px-4">
+      <section id="about" ref={aboutRef} className="py-32">
+        <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+            <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
               About Me
             </h2>
-            <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-start">
-              <div className="relative aspect-square rounded-xl overflow-hidden shadow-xl mx-auto max-w-sm w-full">
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+              <div className="relative aspect-square rounded-xl overflow-hidden shadow-xl">
                 <img
                   src="https://images.unsplash.com/photo-1614023342667-6f060e9d1e04" 
                   alt="Fahad Amin"
@@ -154,28 +154,28 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-16 sm:mt-20">
-              <h3 className="text-xl sm:text-2xl font-bold mb-8 sm:mb-12 text-center">Skills & Technologies</h3>
+            <div className="mt-20">
+              <h3 className="text-2xl font-bold mb-12 text-center">Skills & Technologies</h3>
               <SkillsGrid />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="contact" ref={contactRef} className="py-20 sm:py-32 bg-gradient-to-b from-[#1a1c2e] to-[#2a2c3e]">
-        <div className="container px-4">
+      <section id="contact" ref={contactRef} className="py-32 bg-gradient-to-b from-[#1a1c2e] to-[#2a2c3e]">
+        <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+            <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
               Get in Touch
             </h2>
 
-            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
               <Card className="p-6 hover:border-blue-400 transition-colors">
                 <div className="flex items-center gap-4 mb-4">
                   <Mail className="w-6 h-6 text-blue-400" />
                   <h3 className="font-semibold">Email</h3>
                 </div>
-                <a href="mailto:famin7733@gmail.com" className="text-muted-foreground hover:text-blue-400 break-all">
+                <a href="mailto:famin7733@gmail.com" className="text-muted-foreground hover:text-blue-400">
                   famin7733@gmail.com
                 </a>
               </Card>
@@ -196,8 +196,8 @@ export default function Home() {
               </Card>
             </div>
 
-            <Card className="p-6 sm:p-8">
-              <h3 className="text-xl sm:text-2xl font-bold mb-6">Send a Message</h3>
+            <Card className="p-8">
+              <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
               <ContactForm />
             </Card>
           </div>

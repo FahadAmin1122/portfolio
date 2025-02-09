@@ -12,15 +12,15 @@ const skills = [
 
 export default function SkillsGrid() {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
       {skills.map(({ name, icon: Icon, color }) => (
-        <Card key={name} className="group hover:border-blue-400 transition-colors">
+        <Card key={name} className="group hover:border-primary transition-colors">
           <CardHeader className="space-y-0 pb-2">
-            <CardTitle className="text-sm sm:text-base">{name}</CardTitle>
+            <CardTitle className="text-sm">{name}</CardTitle>
           </CardHeader>
           <CardContent>
             <Icon
-              className="w-8 h-8 sm:w-12 sm:h-12 transition-transform group-hover:scale-110"
+              className="w-12 h-12 transition-transform group-hover:scale-110"
               style={{ color }}
             />
           </CardContent>
