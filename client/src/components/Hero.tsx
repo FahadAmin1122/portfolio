@@ -67,19 +67,19 @@ export default function Hero() {
   };
 
   return (
-    <div ref={containerRef} className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#1a1c2e] to-[#2a2c3e]">
-      <div ref={textRef} className="container text-center">
-        <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+    <div ref={containerRef} className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#1a1c2e] to-[#2a2c3e] px-4">
+      <div ref={textRef} className="container text-center max-w-4xl">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
           MERN Stack Developer
         </h1>
-        <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto">
           Building modern web applications with passion and precision
         </p>
-        <div className="flex gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button 
             size="lg" 
             onClick={scrollToProjects}
-            className="bg-gradient-to-r from-blue-400 to-purple-600 hover:opacity-90 transition-opacity"
+            className="w-full sm:w-auto bg-gradient-to-r from-blue-400 to-purple-600 hover:opacity-90 transition-opacity text-base sm:text-lg px-8"
           >
             View Projects
           </Button>
@@ -87,7 +87,7 @@ export default function Hero() {
             size="lg" 
             variant="outline" 
             onClick={scrollToContact}
-            className="border-blue-400 text-blue-400 hover:bg-blue-400/10 transition-colors"
+            className="w-full sm:w-auto border-blue-400 text-blue-400 hover:bg-blue-400/10 transition-colors text-base sm:text-lg px-8"
           >
             Get in Touch
           </Button>
