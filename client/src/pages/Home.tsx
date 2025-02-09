@@ -113,11 +113,11 @@ export default function Home() {
       </section>
 
       <section id="projects" ref={projectsRef} className="py-16 md:py-32 bg-gradient-to-b from-[#1a1c2e] to-[#2a2c3e]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1800px]">
           <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
             Featured Projects
           </h2>
-          <div ref={projectCardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div ref={projectCardsRef} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
             {featuredProjects.map((project) => (
               <div key={project.title} className="project-card">
                 <ProjectCard {...project} />
@@ -128,13 +128,13 @@ export default function Home() {
       </section>
 
       <section id="about" ref={aboutRef} className="py-16 md:py-32">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
-          <div className="max-w-7xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1800px]">
+          <div className="max-w-[1400px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
               About Me
             </h2>
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-              <div className="relative aspect-square rounded-xl overflow-hidden shadow-xl w-full max-w-2xl mx-auto md:mx-0">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+              <div className="relative aspect-square rounded-xl overflow-hidden shadow-xl w-full max-w-2xl mx-auto lg:mx-0">
                 <img
                   src="https://images.unsplash.com/photo-1614023342667-6f060e9d1e04"
                   alt="Fahad Amin"
@@ -142,12 +142,12 @@ export default function Home() {
                 />
               </div>
               <div className="prose prose-lg max-w-none">
-                <p>
+                <p className="text-lg lg:text-xl">
                   I'm Fahad Amin, a passionate MERN stack developer with a focus on building
                   scalable web applications. With expertise in modern web technologies,
                   I create efficient and user-friendly solutions for complex problems.
                 </p>
-                <p>
+                <p className="text-lg lg:text-xl">
                   My journey in web development started with a deep curiosity for creating
                   interactive user experiences. Over the years, I've honed my skills in
                   the MERN stack (MongoDB, Express.js, React, and Node.js) and various
@@ -156,8 +156,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-16 md:mt-20">
-              <h3 className="text-xl md:text-2xl font-bold mb-8 md:mb-12 text-center">Skills & Technologies</h3>
+            <div className="mt-16 lg:mt-32">
+              <h3 className="text-xl md:text-2xl font-bold mb-8 lg:mb-12 text-center">Skills & Technologies</h3>
               <SkillsGrid />
             </div>
           </div>
@@ -165,13 +165,13 @@ export default function Home() {
       </section>
 
       <section id="contact" ref={contactRef} className="py-16 md:py-32 bg-gradient-to-b from-[#1a1c2e] to-[#2a2c3e]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
-          <div className="max-w-4xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1800px]">
+          <div className="max-w-[1400px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
               Get in Touch
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12">
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-8 lg:mb-12">
               <Card className="p-6 hover:border-blue-400 transition-colors">
                 <div className="flex items-center gap-4 mb-4">
                   <Mail className="w-6 h-6 text-blue-400" />
@@ -198,7 +198,7 @@ export default function Home() {
               </Card>
             </div>
 
-            <Card className="p-6 md:p-8">
+            <Card className="p-6 lg:p-8">
               <h3 className="text-xl md:text-2xl font-bold mb-6">Send a Message</h3>
               <ContactForm />
             </Card>
