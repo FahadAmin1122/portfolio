@@ -45,7 +45,7 @@ export default function Hero() {
   const scrollToProjects = () => {
     const projectsSection = document.querySelector("#projects");
     if (projectsSection) {
-      const navHeight = 64; // Height of the navbar
+      const navHeight = 80; // Height of the navbar
       const elementPosition = projectsSection.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
         top: elementPosition - navHeight,
@@ -57,7 +57,7 @@ export default function Hero() {
   const scrollToContact = () => {
     const contactSection = document.querySelector("#contact");
     if (contactSection) {
-      const navHeight = 64; // Height of the navbar
+      const navHeight = 80; // Height of the navbar
       const elementPosition = contactSection.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
         top: elementPosition - navHeight,

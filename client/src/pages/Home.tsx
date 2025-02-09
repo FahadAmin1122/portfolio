@@ -46,18 +46,36 @@ export default function Home() {
   useEffect(() => {
     const sections = [projectsRef, aboutRef, contactRef];
 
+    // Animate sections on scroll
     sections.forEach((sectionRef) => {
       if (sectionRef.current) {
-        gsap.from(sectionRef.current.children, {
+        const children = sectionRef.current.children;
+
+        // Animate section title
+        gsap.from(children[0], {
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top center+=100",
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+
+        // Animate section content with stagger
+        gsap.from(Array.from(children).slice(1), {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
             toggleActions: "play none none reverse",
           },
           y: 60,
           opacity: 0,
           duration: 1,
           stagger: 0.2,
+          ease: "power3.out",
         });
       }
     });
@@ -67,36 +85,31 @@ export default function Home() {
     };
   }, []);
 
-  const scrollToProjects = () => {
-    document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   return (
-    <div>
-      <section id="home">
+    <div className="pt-20"> {/* Add top padding to prevent content from hiding under navbar */}
+      <section id="home" className="min-h-[calc(100vh-5rem)]">
         <Hero />
       </section>
 
-      <section id="projects" ref={projectsRef} className="py-20 bg-muted/50">
+      <section id="projects" ref={projectsRef} className="py-32 bg-muted/50">
         <div className="container">
-          <h2 className="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
+          <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-[#61DAFB]">
+            Featured Projects
+          </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {featuredProjects.map((project) => (
               <ProjectCard key={project.title} {...project} />
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Button onClick={scrollToProjects}>
-              View All Projects
-            </Button>
-          </div>
         </div>
       </section>
 
-      <section id="about" ref={aboutRef} className="py-20">
+      <section id="about" ref={aboutRef} className="py-32">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8">About Me</h2>
+            <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-[#61DAFB]">
+              About Me
+            </h2>
             <div className="prose prose-lg">
               <p>
                 I'm Fahad Amin, a passionate MERN stack developer with a focus on building
@@ -110,21 +123,23 @@ export default function Home() {
                 modern development tools and practices.
               </p>
             </div>
-            <div className="mt-12">
-              <h3 className="text-2xl font-bold mb-8">Skills & Technologies</h3>
+            <div className="mt-20">
+              <h3 className="text-2xl font-bold mb-12 text-center">Skills & Technologies</h3>
               <SkillsGrid />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="contact" ref={contactRef} className="py-20 bg-muted/50">
+      <section id="contact" ref={contactRef} className="py-32 bg-muted/50">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8">Get in Touch</h2>
+            <h2 className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-[#61DAFB]">
+              Get in Touch
+            </h2>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <Card className="p-6">
+              <Card className="p-6 hover:border-primary transition-colors">
                 <div className="flex items-center gap-4 mb-4">
                   <Mail className="w-6 h-6 text-primary" />
                   <h3 className="font-semibold">Email</h3>
@@ -134,7 +149,7 @@ export default function Home() {
                 </a>
               </Card>
 
-              <Card className="p-6">
+              <Card className="p-6 hover:border-primary transition-colors">
                 <div className="flex items-center gap-4 mb-4">
                   <Linkedin className="w-6 h-6 text-primary" />
                   <h3 className="font-semibold">LinkedIn</h3>
