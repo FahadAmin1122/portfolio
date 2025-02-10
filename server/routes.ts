@@ -1,7 +1,7 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertProjectSchema, insertSkillSchema, insertMessageSchema } from "@shared/schema";
+import { insertProjectSchema, insertSkillSchema, insertMessageSchema } from './models';
 import { z } from "zod";
 
 export function registerRoutes(app: Express): Server {
