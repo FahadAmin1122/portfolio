@@ -2,7 +2,6 @@ import { users, type User, type InsertUser } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 import { Project, Skill, Message } from './models';
-import type { ProjectType, SkillType, MessageType } from './models';
 
 
 // modify the interface with any CRUD methods
