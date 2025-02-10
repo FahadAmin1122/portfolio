@@ -1,11 +1,11 @@
 
 import type { Express, Request, Response } from "express";
-import { createServer, type Server } from "http";
+import { createServer } from "http";
 import { Project, Skill, Message } from './models';
-import { insertProjectSchema, insertSkillSchema, insertMessageSchema } from './models';
+import { insertProjectSchema, insertSkillSchema, insertMessageSchema } from '../shared/schema';
 import { z } from "zod";
 
-export function registerRoutes(app: Express): Server {
+export function registerRoutes(app: Express) {
   // Projects routes
   app.get("/api/projects", async (_req: Request, res: Response) => {
     try {
@@ -23,7 +23,7 @@ export function registerRoutes(app: Express): Server {
       res.status(201).json(project);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.status(400).json({ message: "Invalid project data", errors: error.errors });
+        res.status(400).json({ message: error.message });
       } else {
         res.status(500).json({ message: "Failed to create project" });
       }
@@ -47,7 +47,7 @@ export function registerRoutes(app: Express): Server {
       res.status(201).json(skill);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.status(400).json({ message: "Invalid skill data", errors: error.errors });
+        res.status(400).json({ message: error.message });
       } else {
         res.status(500).json({ message: "Failed to create skill" });
       }
@@ -62,13 +62,13 @@ export function registerRoutes(app: Express): Server {
       res.status(201).json(message);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.status(400).json({ message: "Invalid message data", errors: error.errors });
+        res.status(400).json({ message: error.message });
       } else {
-        res.status(500).json({ message: "Failed to save message" });
+        res.status(500).json({ message: "Failed to create message" });
       }
     }
   });
 
-  const httpServer = createServer(app);
-  return httpServer;
+  const server = createServer(app);
+  return server;
 }
