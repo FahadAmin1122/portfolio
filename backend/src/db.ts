@@ -1,6 +1,7 @@
 
 import mongoose from 'mongoose';
-import 'dotenv/config';
+import * as dotenv from 'dotenv';
+dotenv.config({ path: './.env' });
 
 if (!process.env.MONGODB_URI) {
   throw new Error("MONGODB_URI must be set in .env file");
