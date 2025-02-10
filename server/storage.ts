@@ -12,6 +12,9 @@ import {
   type Message,
   type InsertMessage,
 } from "@shared/schema";
+import { Project as ProjectType, Skill as SkillType, Message as MessageType } from '@shared/schema';
+import type { ProjectType as ProjectType2, SkillType as SkillType2, MessageType as MessageType2 } from '@shared/schema';
+
 
 // modify the interface with any CRUD methods
 // you might need
@@ -21,18 +24,18 @@ export interface IStorage {
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   // Projects
-  getProjects(): Promise<Project[]>;
-  getProject(id: number): Promise<Project | undefined>;
-  createProject(project: InsertProject): Promise<Project>;
+  getProjects(): Promise<ProjectType2[]>;
+  getProject(id: string): Promise<ProjectType2 | null>;
+  createProject(project: Partial<ProjectType2>): Promise<ProjectType2>;
 
   // Skills
-  getSkills(): Promise<Skill[]>;
-  getSkill(id: number): Promise<Skill | undefined>;
-  createSkill(skill: InsertSkill): Promise<Skill>;
+  getSkills(): Promise<SkillType2[]>;
+  getSkill(id: string): Promise<SkillType2 | null>;
+  createSkill(skill: Partial<SkillType2>): Promise<SkillType2>;
 
   // Messages
-  createMessage(message: InsertMessage): Promise<Message>;
-  getMessages(): Promise<Message[]>;
+  createMessage(message: Partial<MessageType2>): Promise<MessageType2>;
+  getMessages(): Promise<MessageType2[]>;
 }
 
 export class MemStorage implements IStorage {
@@ -61,73 +64,65 @@ export class MemStorage implements IStorage {
     return user;
   }
   //Projects
-  async getProjects(): Promise<Project[]> {
+  async getProjects(): Promise<ProjectType2[]> {
     throw new Error("Method not implemented.");
   }
-  async getProject(id: number): Promise<Project | undefined> {
+  async getProject(id: string): Promise<ProjectType2 | null> {
     throw new Error("Method not implemented.");
   }
-  async createProject(project: InsertProject): Promise<Project> {
+  async createProject(project: Partial<ProjectType2>): Promise<ProjectType2> {
     throw new Error("Method not implemented.");
   }
   //Skills
-  async getSkills(): Promise<Skill[]> {
+  async getSkills(): Promise<SkillType2[]> {
     throw new Error("Method not implemented.");
   }
-  async getSkill(id: number): Promise<Skill | undefined> {
+  async getSkill(id: string): Promise<SkillType2 | null> {
     throw new Error("Method not implemented.");
   }
-  async createSkill(skill: InsertSkill): Promise<Skill> {
+  async createSkill(skill: Partial<SkillType2>): Promise<SkillType2> {
     throw new Error("Method not implemented.");
   }
   //Messages
-  async createMessage(message: InsertMessage): Promise<Message> {
+  async createMessage(message: Partial<MessageType2>): Promise<MessageType2> {
     throw new Error("Method not implemented.");
   }
-  async getMessages(): Promise<Message[]> {
+  async getMessages(): Promise<MessageType2[]> {
     throw new Error("Method not implemented.");
   }
 }
 
 export class DatabaseStorage implements IStorage {
-  // Projects
-  async getProjects(): Promise<Project[]> {
-    return await db.select().from(projects).orderBy(projects.createdAt);
+  async getProjects(): Promise<ProjectType[]> {
+    return await Project.find().sort({ createdAt: 1 });
   }
 
-  async getProject(id: number): Promise<Project | undefined> {
-    const [project] = await db.select().from(projects).where(eq(projects.id, id));
-    return project;
+  async getProject(id: string): Promise<ProjectType | null> {
+    return await Project.findById(id);
   }
 
-  async createProject(project: InsertProject): Promise<Project> {
-    const [newProject] = await db.insert(projects).values(project).returning();
-    return newProject;
+  async createProject(project: Partial<ProjectType>): Promise<ProjectType> {
+    return await Project.create(project);
   }
 
-  // Skills
-  async getSkills(): Promise<Skill[]> {
-    return await db.select().from(skills).orderBy(skills.name);
+  async getSkills(): Promise<SkillType[]> {
+    return await Skill.find().sort({ name: 1 });
   }
 
-  async getSkill(id: number): Promise<Skill | undefined> {
-    const [skill] = await db.select().from(skills).where(eq(skills.id, id));
-    return skill;
+  async getSkill(id: string): Promise<SkillType | null> {
+    return await Skill.findById(id);
   }
 
-  async createSkill(skill: InsertSkill): Promise<Skill> {
-    const [newSkill] = await db.insert(skills).values(skill).returning();
-    return newSkill;
+  async createSkill(skill: Partial<SkillType>): Promise<SkillType> {
+    return await Skill.create(skill);
   }
 
-  // Messages
-  async createMessage(message: InsertMessage): Promise<Message> {
-    const [newMessage] = await db.insert(messages).values(message).returning();
-    return newMessage;
+  async createMessage(message: Partial<MessageType>): Promise<MessageType> {
+    return await Message.create(message);
   }
 
-  async getMessages(): Promise<Message[]> {
-    return await db.select().from(messages).orderBy(messages.createdAt);
+  async getMessages(): Promise<MessageType[]> {
+    return await Message.find().sort({ createdAt: 1 });
   }
   async getUser(id: number): Promise<User | undefined> {
     throw new Error("Method not implemented.");
