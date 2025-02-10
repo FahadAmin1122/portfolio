@@ -1,4 +1,27 @@
 import mongoose from 'mongoose';
+import { z } from 'zod';
+
+// Schema validation
+export const insertProjectSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  image: z.string(),
+  tags: z.array(z.string()),
+  liveUrl: z.string().optional(),
+  githubUrl: z.string().optional()
+});
+
+export const insertSkillSchema = z.object({
+  name: z.string(),
+  icon: z.string(),
+  color: z.string()
+});
+
+export const insertMessageSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  message: z.string()
+});
 
 // Project Schema
 const projectSchema = new mongoose.Schema({
