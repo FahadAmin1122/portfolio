@@ -50,7 +50,7 @@ export default function ProjectCard({
         {liveUrl && (
           <Button variant="outline" size="sm" onClick={() => setIsLive(true)} className=" hover:text-[#64FFDA]">
             <ExternalLink className="w-4 h-4 mr-2 " />
-            Live Demo
+            Live Demo Videos
           </Button>
         )}
         {githubUrl && (
