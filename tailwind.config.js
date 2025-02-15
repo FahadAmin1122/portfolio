@@ -5,11 +5,7 @@ export default {
         "./src/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
-        extend: {
-            borderColor: {
-                'border-border': '##your-border-color-here', // Replace ##your-border-color-here with your desired color
-            }
-        },
+        extend: {},
     },
     plugins: [],
-}
+};

@@ -9,7 +9,6 @@ import {
   SiTailwindcss,
   SiMysql,
   SiBootstrap,
-  SiGit,
   SiGithub
 } from "react-icons/si";
 
