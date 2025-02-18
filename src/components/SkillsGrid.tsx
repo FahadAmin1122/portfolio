@@ -27,16 +27,16 @@ const skills = [
 
 export default function SkillsGrid() {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 ">
       {skills.map(({ name, icon: Icon, color }) => (
-        <Card key={name} className="group hover:border-primary transition-colors">
+        <Card key={name} className="group hover:border-primary transition-colors bg-[#003d3d] border border-[#7d7d7d]">
           <CardHeader className="space-y-0 pb-2">
-            <CardTitle className="text-sm">{name}</CardTitle>
+            <CardTitle className="text-sm text-[#FCFCFC]">{name}</CardTitle>
           </CardHeader>
           <CardContent>
             <Icon
               className="w-12 h-12 transition-transform group-hover:scale-110"
-              style={{ color }}
+              style={{ color  }}
             />
           </CardContent>
         </Card>

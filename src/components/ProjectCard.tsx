@@ -12,6 +12,7 @@ interface ProjectCardProps {
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
+  className?: string;
 }
 
 export default function ProjectCard({
@@ -21,11 +22,12 @@ export default function ProjectCard({
   tags,
   liveUrl,
   githubUrl,
+  className,
 }: ProjectCardProps) {
   const [isLive, setIsLive] = useState(false);
 
   return (
-    <Card className="overflow-hidden group">
+    <Card className={`overflow-hidden group ${className}`}>
       <div className="relative aspect-video overflow-hidden">
         <img
           src={image}

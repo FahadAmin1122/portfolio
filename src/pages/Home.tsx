@@ -184,17 +184,26 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
             Featured Projects
           </h2>
-          <div ref={projectCardsRef} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+          {/* <div ref={projectCardsRef} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
             {featuredProjects.map((project) => (
               <div key={project.title} className="project-card text-[#ededed] gap-2">
                 <ProjectCard {...project} />
               </div>
             ))}
+          </div> */}
+          
+          <div ref={projectCardsRef} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+            {featuredProjects.map((project) => (
+              <div key={project.title} className="project-card text-[#ededed] flex flex-col h-full">
+                <ProjectCard {...project} className="flex flex-col h-full" />
+              </div>
+            ))}
           </div>
+
         </div>
       </section>
 
-      <section id="about" ref={aboutRef} className="py-16 md:py-32">
+      <section id="about" ref={aboutRef} className="py-16 md:py-32 bg-[#FCFCFC]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1800px]">
           <div className="max-w-[1400px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
@@ -211,21 +220,27 @@ export default function Home() {
               </div>
               <div className="prose prose-lg max-w-none">
                 <p className="text-lg lg:text-xl">
-                  I’m Fahad Amin, a passionate MERN stack developer dedicated to building scalable,
-                  high-performance web applications. With a strong foundation in modern web technologies,
-                  I specialize in crafting efficient, user-friendly solutions that tackle complex challenges.
+                  I’m <b>Fahad Amin</b>,  I recently graduated from <b>Government College University
+                    Lahore</b> with a <b>BS in Computer Science (2024)</b>, achieving a <b>3.02 CGPA</b> .
                 </p>
                 <br />
                 <p className="text-lg lg:text-xl">
-                  My journey into web development began with a deep curiosity for creating interactive and dynamic user experiences.
-                  Over the years, I’ve refined my expertise in the MERN stack (MongoDB, Express.js, React.js, Node.js) and various
-                  cutting-edge development tools and frameworks to deliver robust, optimized, and seamless applications.
+                  As a passionate <b>MERN stack developer</b>, I am dedicated to building scalable, high-performance web applications.
+                  With a strong foundation in modern web technologies
+                  , I specialize in crafting efficient, user-friendly solutions that tackle complex challenges.
                 </p>
                 <br />
                 <p className="text-lg lg:text-xl">
-                  I’m always excited to learn, build, and collaborate on projects that push the boundaries of modern web development.
-                  Let’s create something amazing together! 🚀
+                  My journey into web development started with a deep curiosity for creating interactive and dynamic user experiences.
+                  Over time, I have refined my expertise in the MERN stack <b>(MongoDB, Express.js, React.js, Node.js)</b> along with various cutting-edge development
+                  tools and frameworks to deliver robust, optimized, and seamless applications.
                 </p>
+                <br />
+                <p className="text-lg lg:text-xl">
+                  <em>I’m always eager to learn, build, and collaborate on projects that push the boundaries of modern web development.
+                    Let’s create something amazing together! 🚀</em>
+                </p>
+                <br />
               </div>
             </div>
 

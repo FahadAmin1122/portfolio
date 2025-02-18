@@ -12,7 +12,7 @@ const LiveVideo: React.FC<LiveVideoProps> = ({ videoUrl, onClose }) => {
             <div className="bg-white p-4 rounded-lg shadow-lg relative">
                 <button
                     onClick={onClose}
-                    className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full"
+                    className="absolute top-1 right-2 bg-red-500 text-white h-9 w-9 rounded-3xl"
                 >
                     ✕
                 </button>
